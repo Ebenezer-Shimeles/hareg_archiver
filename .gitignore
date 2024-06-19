@@ -1,0 +1,15 @@
+*.exe
+./build
+*.vcxproj
+*.filters
+*.cmake
+ui/build
+*.sln
+x64/
+.vs/
+*.user
+hareg.dir/
+CmakeFiles/
+out/
+Release/
+Debug/
