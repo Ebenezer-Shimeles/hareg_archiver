@@ -2,6 +2,14 @@
 
 Hareg Archiver is a robust and efficient file compression tool that utilizes LZSS and Huffman coding algorithms. Future developments include a user-friendly interface built with Flutter, additional algorithms like LZW and LZMA, file streaming support, and optimizations using CUDA and SIMD.
 
+# C++ Style
+
+We try to use modern C++ following the google style guide [LINK](https://google.github.io/styleguide/cppguide.html)
+
+# Testing
+
+Currently tested on text, video, executable files.
+
 ## Features
 
 - **Currently Accomplished**
@@ -10,9 +18,9 @@ Hareg Archiver is a robust and efficient file compression tool that utilizes LZS
   - &#9745; **Simple File Format**: a simple file format to compress/decompress single files.
 
 - **Planned Features**
-  - &#9744; **Binary Search Tree Optimization for lzss matcher**: Optimizer the Linked List Matcher(O(N^2)) to Binary seartch Tree((O(log(n))))
+  - &#9744; **Binary Search Tree Optimization for lzss matcher**: Optimizer the Linked List Matcher(O(N^2)) to Binary searth Tree(O(logN))
   - &#9744; **Unit Test**: Test files using gtest.
-  
+
   - &#9744; **Stream Compression**: Handle compression/decompression in a block style to handle file size that are greater than the ram.
   - &#9744; **Folders**: Compressing folders and files 
   - &#9744; **UI with Flutter**: A cross-platform UI toolkit to provide a seamless and interactive user experience.
@@ -36,7 +44,7 @@ Hareg Archiver is a robust and efficient file compression tool that utilizes LZS
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository and run cmake to generate the build files for the respective envoriment:
    ```bash
    git clone https://github.com/yourusername/hareg-archiver.git
    cd hareg-archiver
