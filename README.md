@@ -34,6 +34,11 @@ Currently tested on text, video, executable files.
   - &#9744; **CUDA Optimizations**: Utilize NVIDIA's parallel computing platform to enhance performance.
   - &#9744; **SIMD Optimizations**: Use Single Instruction, Multiple Data techniques to process data more efficiently.
   - &#9744; **General Optimizations**
+  ### Support for other storage/compression file formats
+  - &#9744; **ISO**
+  - &#9744; **ZIP**
+  - &#9744; **BZIP**
+  - &#9744; **CAB**
 
 ## Getting Started
 
