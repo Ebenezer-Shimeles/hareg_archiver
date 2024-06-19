@@ -24,6 +24,7 @@ Currently tested on text, video, executable files.
   - &#9744; **Stream Compression**: Handle compression/decompression in a block style to handle file size that are greater than the ram.
   - &#9744; **Folders**: Compressing folders and files 
   - &#9744; **UI with Flutter**: A cross-platform UI toolkit to provide a seamless and interactive user experience.
+  - &#9744; **Self Extract**: Add a way  to make setup like executables that can self extract.
   - **Additional Compression Algorithms**:
     - &#9744; **LZW**: A dictionary-based compression algorithm that works by replacing strings of characters with single codes.
     - &#9744; **LZMA**: An algorithm that achieves a high compression ratio by using a dictionary compression scheme.
