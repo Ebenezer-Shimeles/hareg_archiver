@@ -13,3 +13,5 @@ CmakeFiles/
 out/
 Release/
 Debug/
+*.cmd
+CMakeCache.txt
