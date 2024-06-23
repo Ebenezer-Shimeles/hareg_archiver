@@ -18,6 +18,7 @@ Currently tested on text, video, executable files.
   - &#9745; **Simple File Format**: a simple file format to compress/decompress single files.
 
 - **Planned Features**
+  - &#9744; g++ compatbility
   - &#9744; **Binary Search Tree Optimization for lzss matcher**: Optimizer the Linked List Matcher(O(N^2)) to Binary searth Tree(O(logN))
   - &#9744; **Unit Test**: Test files using gtest.
 
@@ -44,7 +45,7 @@ Currently tested on text, video, executable files.
 
 ### Prerequisites
 
-- C++ Compiler
+- MSVC Compiler
 - CMake
 - Git
 
