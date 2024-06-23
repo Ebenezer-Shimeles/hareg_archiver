@@ -2,6 +2,7 @@
 ./build
 *.vcxproj
 *.filters
+.vscode
 *.cmake
 ui/build
 *.sln
@@ -15,3 +16,4 @@ Release/
 Debug/
 *.cmd
 CMakeCache.txt
+testfiles/

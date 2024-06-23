@@ -131,7 +131,7 @@ namespace compression{
 		
 		file::FileInfoBlock file_info;
 		memcpy(&file_info, buffer_tpl.value.get(), sizeof(file::FileInfoBlock));
-		DEBUG_CALL(printf("FileInfoBlock size is %l, compressed_length is %l, compressed_buffer_size is %l\n",
+		DEBUG_CALL(printf("FileInfoBlock size is %l, compressed_length is %i, compressed_buffer_size is %i\n",
 			sizeof(file::FileInfoBlock), file_info.compressed_length, compressed_buffer_size)
 			);
 		if(file_info.compressed_length != compressed_buffer_size -   sizeof(file::FileInfoBlock) - file_info.file_name_size){
