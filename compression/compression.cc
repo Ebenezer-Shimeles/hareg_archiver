@@ -12,19 +12,21 @@ namespace compression{
 		//this functoin combines the lzss and huffmanc
 		
 		size_t lzss_compressed_len;
-		
+		DEBUG_CALL(printf("Buffer size is %i\n", buffer_size));
         DEBUG_CALL(printf("Compressing using LZSS Algorithm\n"));
 		auto lzss_compressed_tuple = lzss::unoptimized_nonstream_lzss_compress(buffer, buffer_size, lzss_compressed_len, lzss_sym_len, mode);
 		if(lzss_compressed_tuple.is_error){
 			return lzss_compressed_tuple.err;
 		}
-		DEBUG_CALL(printf("Compressing using Huffman coding\n"));
+		DEBUG_CALL(printf("LZSS compressed size is %i\n", lzss_compressed_len));
+		DEBUG_CALL(printf("\nCompressing using Huffman coding\n"));
 		//unoptimized_nonstream_huffman_compress_buffer(const char* buffer, const size_t& buffer_len, size_t& return_len)
 		auto huffman_compressed_tuple = huffman::unoptimized_nonstream_huffman_compress_buffer((char*)lzss_compressed_tuple.value.get(), lzss_compressed_len, compressed_len);
         
         if(huffman_compressed_tuple.is_error){
         	return huffman_compressed_tuple.err;
 		}
+		DEBUG_CALL(printf("\nHuffman compressed size is %i\n", compressed_len));
 		return std::move(huffman_compressed_tuple.value);
       
        
@@ -84,7 +86,8 @@ namespace compression{
         file_header.compressed_length = compressed_len;
         file_header.decompresssed_length = buffer_size;
         file_header.comp_type = mode;
-        strncpy((char*)file_header.file_name, input_file_name, input_file_name_size);
+		file_header.file_name_size = input_file_name_size;
+        //strncpy((char*)file_header.file_name, input_file_name, input_file_name_size);
         
         
         DEBUG_CALL(printf("Output file name is %s\n", output_file_name));
@@ -93,8 +96,12 @@ namespace compression{
         {
         	return save_header_tpl.err;
 		}
-        
-	    auto append_content_tpl = file::append_buffer_on_file(output_file_name, (char*)compressed_buffer.value.get(), compressed_len);  
+		auto save_file_name_tpl = file::append_buffer_on_file(output_file_name, input_file_name, input_file_name_size);
+		if (save_file_name_tpl.is_error)
+		{
+			return save_file_name_tpl.err;
+		}
+		auto append_content_tpl = file::append_buffer_on_file(output_file_name, (char*)compressed_buffer.value.get(), compressed_len);  
 		if(append_content_tpl.is_error)
         {
         	return append_content_tpl.err;
@@ -124,14 +131,21 @@ namespace compression{
 		
 		file::FileInfoBlock file_info;
 		memcpy(&file_info, buffer_tpl.value.get(), sizeof(file::FileInfoBlock));
-		if(file_info.compressed_length != compressed_buffer_size -   sizeof(file::FileInfoBlock)){
+		DEBUG_CALL(printf("FileInfoBlock size is %l, compressed_length is %l, compressed_buffer_size is %l\n",
+			sizeof(file::FileInfoBlock), file_info.compressed_length, compressed_buffer_size)
+			);
+		if(file_info.compressed_length != compressed_buffer_size -   sizeof(file::FileInfoBlock) - file_info.file_name_size){
 			return HaregError("Error archive is corrupted", __FILE__, __LINE__);	
 		}
 		DEBUG_CALL(printf("Metadata is read\n"));
-		DEBUG_CALL(printf("Compressed File name is %s\n", file_info.file_name));
-		DEBUG_CALL(printf("The compression enum type %d\n", (int)file_info.comp_type));
+		DEBUG_CALL(printf("Compressed File name size is %d\n", file_info.file_name_size));
+		char* decompressed_file_name = new char[file_info.file_name_size+1];
+		memset((void*)decompressed_file_name, '\0', file_info.file_name_size+1);
+		memcpy((void*)decompressed_file_name, buffer_tpl.value.get() + sizeof(file::FileInfoBlock), file_info.file_name_size);
+		DEBUG_CALL(printf("Compressed File name is %s\n", decompressed_file_name));
+		DEBUG_CALL(printf("The compression enum type %d\n", file_info.comp_type));
 		size_t huffman_decompressed_size;
-		auto huffman_decompressed_tpl = huffman::unoptimized_nonstream_huffman_decompress_buffer(buffer_tpl.value.get() +  sizeof(file::FileInfoBlock), file_info.compressed_length, huffman_decompressed_size);
+		auto huffman_decompressed_tpl = huffman::unoptimized_nonstream_huffman_decompress_buffer(buffer_tpl.value.get() + file_info.file_name_size +  sizeof(file::FileInfoBlock), file_info.compressed_length, huffman_decompressed_size);
 	    if(huffman_decompressed_tpl.is_error){
 	    	return huffman_decompressed_tpl.err;
 		}
@@ -143,13 +157,14 @@ namespace compression{
 		
 		*/
 		auto lzss_decompressed_tpl = lzss::unoptimized_nonstream_lzss_decompress((char *)huffman_decompressed_tpl.value.get(), huffman_decompressed_size, 
-																	 file_info.lzzs_sym, file_info.decompresssed_length, file_info.comp_type);
+																	 file_info.lzzs_sym, file_info.decompresssed_length, (CompressionType)file_info.comp_type);
 	    if(lzss_decompressed_tpl.is_error){
 	    	return lzss_decompressed_tpl.err;
 		}
 	
 		
-		file::save_buffer_on_file((char*)file_info.file_name, (char*)(lzss_decompressed_tpl.value.get()), file_info.decompresssed_length);
+		file::save_buffer_on_file(decompressed_file_name, (char*)(lzss_decompressed_tpl.value.get()), file_info.decompresssed_length);
+		delete[] decompressed_file_name;
 		return {};
 	}
 }

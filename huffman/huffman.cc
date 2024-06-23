@@ -242,7 +242,7 @@ namespace huffman{
 		for(int64_t i=0; i < char_len; i++){
 			rv += (chars.get())[i];
 		}
-       	DEBUG_CALL(printf("Chars encoded!"));
+       	DEBUG_CALL(printf("Chars encoded!\n"));
 		return {};
 		
 		
@@ -284,7 +284,8 @@ namespace huffman{
 		 return_len = rv_s.size() + header_size;
 		 
 		 auto rv = std::unique_ptr<uint8_t[]>(new uint8_t[return_len]);
-		 
+		 DEBUG_CALL(printf("Huffman header size is %i\n", header_size));
+		 DEBUG_CALL(printf("Huffman Compressed buffer size is %i\n", rv_s.size()));
 		 memcpy(rv.get(), &header, header_size);
 		 memcpy(rv.get() + header_size, rv_s.c_str(), rv_s.size());
 		 

@@ -28,36 +28,36 @@ namespace lzss{
     	    size_t copy_len;
     	    size_t token_size = 0;
     	    if(mode == LZSS_HUFFMAN_4KB){
-    	    	// auto match_tpl = matcher.find_largest_match<LzssToken4KB>(buffer, buffer_size, i);
-    	    	// is_match = match_tpl.is_match;
-    	    	// token_size = sizeof(LzssToken4KB);
-    	    	// token_buffer = new char[token_size];
-    	    	// memcpy(token_buffer, &match_tpl.token, token_size);
-    	    	// copy_len = match_tpl.token.copy_len;
+    	    	 auto match_tpl = matcher.find_largest_match<LzssToken4KB>(buffer, buffer_size, i);
+    	    	 is_match = match_tpl.is_match;
+    	    	 token_size = sizeof(LzssToken4KB);
+    	    	 token_buffer = new char[token_size];
+    	         memcpy(token_buffer, &match_tpl.token, token_size);
+    	    	 copy_len = match_tpl.token.copy_len;
     	    	
 			}else if(mode == LZSS_HUFFMAN_8KB){
-				// auto match_tpl = matcher.find_largest_match<LzssToken8KB>(buffer, buffer_size, i);
-    	    	// is_match = match_tpl.is_match;
-    	    	// token_size = sizeof(LzssToken8KB);
-    	    	// token_buffer = new char[token_size];
-    	    	// memcpy(token_buffer, &match_tpl.token, token_size);
-    	    	// copy_len = match_tpl.token.copy_len;
+				 auto match_tpl = matcher.find_largest_match<LzssToken8KB>(buffer, buffer_size, i);
+    	    	 is_match = match_tpl.is_match;
+    	    	 token_size = sizeof(LzssToken8KB);
+    	    	 token_buffer = new char[token_size];
+    	    	 memcpy(token_buffer, &match_tpl.token, token_size);
+    	    	 copy_len = match_tpl.token.copy_len;
 				
 			}else if(mode == LZSS_HUFFMAN_32KB){
-				// auto match_tpl = matcher.find_largest_match<LzssToken32KB>(buffer, buffer_size, i);
-    	    	// is_match = match_tpl.is_match;
-    	    	// token_size = sizeof(LzssToken32KB);
-    	    	// token_buffer = new char[token_size];
-    	    	// memcpy(token_buffer, &match_tpl.token, token_size);
-    	    	// copy_len = match_tpl.token.copy_len;
+				 auto match_tpl = matcher.find_largest_match<LzssToken32KB>(buffer, buffer_size, i);
+    	    	 is_match = match_tpl.is_match;
+    	    	 token_size = sizeof(LzssToken32KB);
+    	    	 token_buffer = new char[token_size];
+    	    	 memcpy(token_buffer, &match_tpl.token, token_size);
+    	    	 copy_len = match_tpl.token.copy_len;
 				
 			}else if(mode == LZSS_HUFFMAN_64KB){
-				// auto match_tpl = matcher.find_largest_match<LzssToken64KB>(buffer, buffer_size, i);
-    	    	// is_match = match_tpl.is_match;
-    	    	// token_size = sizeof(LzssToken64KB);
-    	    	// token_buffer = new char[token_size];
-    	    	// memcpy(token_buffer, &match_tpl.token, token_size);
-    	    	// copy_len = match_tpl.token.copy_len;
+				 auto match_tpl = matcher.find_largest_match<LzssToken64KB>(buffer, buffer_size, i);
+    	    	 is_match = match_tpl.is_match;
+    	    	 token_size = sizeof(LzssToken64KB);
+    	    	 token_buffer = new char[token_size];
+    	    	 memcpy(token_buffer, &match_tpl.token, token_size);
+    	    	 copy_len = match_tpl.token.copy_len;
 				
 			}else{
 				return HaregError("Error unknown dictionary type given!", __FILE__, __LINE__);
