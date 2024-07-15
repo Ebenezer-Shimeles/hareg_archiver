@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <cstddef>
 #pragma once
 
 struct LzssBlockInfo{

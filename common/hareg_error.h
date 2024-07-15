@@ -1,6 +1,8 @@
 #pragma once
 #include <ostream>
 #include <string>
+#include <cstddef>
+#include <cstdint>
 
 /*
    Encapsuates runtime errors 

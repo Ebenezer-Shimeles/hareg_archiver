@@ -2,6 +2,7 @@
 
 #include <common/common.h>
 #include <cstdint>
+#include <cstddef>
 
 
 PACK(struct LzssToken4KB{

@@ -2,7 +2,10 @@
 
 #include <lzss/lzss.h>
 #include <huffman/huffman.h>
+#include <cstddef>
+#include <cstring>
 #include <file/file.h>
+#include <memory>
 namespace compression{
 	
 	HaregVal<std::unique_ptr<uint8_t[]>> unoptimized_nonstream_compress_buffer(const char* buffer, const size_t& buffer_size, 

@@ -1,6 +1,8 @@
 #include <lzss/lzss.h>
 #include <lzss/linked_list_matcher.h>
 #include <bin/bin.h>
+#include <cstddef>
+#include <memory>
 size_t lzss::LinkedListNode::count = 0;
 namespace lzss{
 

@@ -1,5 +1,8 @@
 #include <string>
 #include <cstdint>
+#include <cstddef>
+#include <memory>
+#include <cstring>
 
 #include <common/hareg_error.h>
 #include <common/hareg_val.h>

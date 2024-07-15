@@ -2,8 +2,10 @@
 
 #include <common/common.h>
 #include <compression/compression_type.h>
-
+#include <cstddef>
 #include <cstdint>
+#include <cstddef>
+
 #include <cstdio>
 
 namespace file{

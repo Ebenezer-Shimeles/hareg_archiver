@@ -1,6 +1,6 @@
 #include <lzss/linked_list_matcher.h>
 
-
+#include <cstring>
 
 lzss::LinkedListMatcher::LinkedListMatcher(LinkedListMatcher&& other){ //movable!
 	this->m_curr_size = other.m_curr_size;

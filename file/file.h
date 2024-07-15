@@ -4,8 +4,9 @@
 #include <common/hareg_val.h>
 #include <common/common.h>
 #include <cstdio>
+#include <cstddef>
 #include <file/file_info_block.h>
-
+#include <memory>
 namespace file{
 
     [[nodiscard]]

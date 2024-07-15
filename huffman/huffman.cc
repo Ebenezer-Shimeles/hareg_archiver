@@ -1,7 +1,9 @@
 #include <huffman/huffman.h>
 
 #include <queue>
-
+#include <cstddef>
+#include <cstring>
+#include <memory>
 namespace huffman{
 
 	

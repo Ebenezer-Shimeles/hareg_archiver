@@ -6,6 +6,7 @@
 #include <common/hareg_error.h>
 #include <bin/bin.h>
 #include <memory>
+#include <cstddef>
 #include <string>
 namespace huffman {
 

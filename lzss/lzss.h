@@ -6,6 +6,7 @@
 #include <compression/compression_type.h>
 #include <string>
 #include <common/hareg_val.h>
+#include <cstddef>
 #include <lzss/dictionary.h>
 
 #include <lzss/lzss_block_info.h>

@@ -2,6 +2,8 @@
 #include <common/hareg_val.h>
 #include <common/common.h>
 #include <cstdio>
+#include <cstddef>
+#include <memory>
 namespace file{
 	
 	 /*

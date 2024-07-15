@@ -1,5 +1,6 @@
 #include <cstdint>
 
+#include <cstddef>
 #pragma once
 
 namespace lzss{

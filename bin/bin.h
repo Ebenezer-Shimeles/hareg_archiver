@@ -2,8 +2,11 @@
 
 #include <string>
 #include <cstdint>
+#include <cstddef>
+
 #include <common/hareg_error.h>
 #include <common/hareg_val.h>
+#include <memory>
 
 
 /**
